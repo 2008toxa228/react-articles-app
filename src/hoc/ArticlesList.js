@@ -29,7 +29,7 @@ function ArticlesList(props) {
             article={article}
         />
     ));
-    //console.log(articles);
+    
     return (
         articles
     );

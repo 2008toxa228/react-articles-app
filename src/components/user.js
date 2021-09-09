@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./css/user.css";
 
 function User (props) {
+    // eslint-disable-next-line
     let user = React.useState.users.find((user) => {return user.id == props.match.params.userId});
     return (
         <div className="user">

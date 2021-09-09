@@ -2,17 +2,15 @@
 import './App.css';
 import React from 'react';
 import Layout from './hoc/Layout';
-import ArticlePreview from './components/articlePreview';
 import {Route, Switch, Redirect} from "react-router-dom";
 import Article from './components/article';
-import Category from './components/category';
 import ArticlesList from './hoc/ArticlesList';
 import CategoryList from './hoc/CategoriesList';
 import UsersList from './hoc/UsersList';
 import User from './components/user';
 
 function App() {
-
+  // React.useState({articles:"as"});
   return (
     <Layout>
       <Switch>

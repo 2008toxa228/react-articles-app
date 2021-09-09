@@ -41,7 +41,7 @@ React.useState = {
     {
       id: 1,
       name: "category1",
-      description: "category1 description<br>category1 contains only article1"
+      description: "category1 description\r\ncategory1 contains only article1"
     },
     {
       id: 2,
