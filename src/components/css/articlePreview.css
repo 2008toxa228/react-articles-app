@@ -1,0 +1,12 @@
+.articlePreviewName, .articlePreviewName a, .articlePreviewName a:visited {
+    color: #4ac6b0;
+    text-decoration: none;
+}
+
+.articlePreviewName a:hover {
+    color: #86fce6;
+}
+
+.articlePreview {
+    margin: 10px 0;
+}

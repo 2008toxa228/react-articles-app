@@ -1,0 +1,13 @@
+article {
+    /* border: 1px solid white; */
+    margin: 10px 0;
+}
+
+article>*{
+    margin: 10px 0;
+    padding: 5px 0;
+}
+
+article h1 {
+    color: #4ac6b0;
+}

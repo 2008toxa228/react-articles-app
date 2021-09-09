@@ -1,0 +1,23 @@
+header {
+    display: flex;
+    flex-direction: column;
+    /* padding: 5px 0; */
+    background-color: #2d2d30;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+header .headerTitle {
+    /* background-color: red; */
+    color: #408738;
+    font-size: 2em;
+    text-decoration: none;
+    cursor: default;
+}
+
+header .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

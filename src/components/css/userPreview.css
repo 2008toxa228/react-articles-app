@@ -1,0 +1,21 @@
+.userPreview a, .userPreview a:visited {
+    color: rgb(216, 216, 216);
+    text-decoration: underline;
+}
+
+.userPreview .userPreviewName, .userPreview .userPreviewName:visited {    
+    color: #4ac6b0;
+    text-decoration: none;
+}
+
+.userPreview .userPreviewName:hover {
+    color: #86fce6;
+}
+
+.userPreview a:hover {
+    color: white;
+}
+
+.userPreview {
+    margin: 10px 0;
+}
