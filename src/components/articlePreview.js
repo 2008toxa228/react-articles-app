@@ -6,11 +6,11 @@ function ArticlePreview (props) {
     return (
         <div className="articlePreview">
             <div className="articlePreviewName">
-                <NavLink to={"/articles/" + props.article.articleId}>{props.article.name}</NavLink>
+                <NavLink to={"/articles/" + props.article.Id}>{props.article.Name}</NavLink>
             </div>
             <div className="articlePreviewPreview">
                 <div className="articlePreviewContent">
-                    {props.article.preview}
+                    {props.article.Preview}
                 </div>
             </div>
         </div>

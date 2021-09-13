@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import "./css/category.css";
 
 function Category (props) {
     return (
         <div className="category">
-            <NavLink to={"/articles/category/" + props.category.id}>{props.category.name}</NavLink>
-            <div className="categoryDescription">{props.category.description}</div>
+            <NavLink to={"/articles/category/" + props.category.Id}>{props.category.Name}</NavLink>
+            <div className="categoryDescription">{props.category.Description}</div>
         </div>
     );
 };

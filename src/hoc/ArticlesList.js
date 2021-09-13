@@ -1,38 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import ArticlePreview from "../components/articlePreview";
+import * as ApiProvider from "../ApiProvider";
 
 function ArticlesList(props) {
-    let articles = React.useState.articles;
-    
-    if (props.match.params.categoryId) {
-        let categoryId = props.match.params.categoryId;
-        articles = articles.filter(function (article) {
-            if (article.categories.includes(categoryId) || article.categories.includes(+categoryId)) {
-                return true;
-            }
-            return false;
-        });
-    }
-    else if (props.match.params.userId) {
-        let userId = props.match.params.userId
-        articles = articles.filter(function (article) {
-            if (article.authors.includes(userId) || article.authors.includes(+userId)) {
-                return true;
-            }
-            return false;
-        });
+    const [articles, setArticles] = useState();
+
+    if (!articles) {
+        console.log(props);
+        if (props.match.params.categoryId) {
+            ApiProvider.GetArticlesByCategoryId(props.match.params.categoryId, props.match.params.pageNumber ?? 0, mapArticles);
+        }
+        else if (props.match.params.userId) {
+            ApiProvider.GetArticlesByUserId(props.match.params.userId, props.match.params.pageNumber ?? 0, mapArticles);
+        }
+        else {
+            ApiProvider.GetArticlesByPage(props.match.params.pageNumber ?? 0, mapArticles);
+        }
     }
 
-    articles = articles.map((article) => (
-        <ArticlePreview
-            key={article.key + "preview"}
-            article={article}
-        />
-    ));
-    
     return (
-        articles
+        <React.Fragment>
+            { articles 
+                ? articles.length 
+                    ? articles
+                    : "page not exist"
+                : ""
+            }
+        </React.Fragment>
     );
+    
+    function mapArticles(data) {
+        console.log("articles data",data);
+        setArticles(data.map(article => (
+            <ArticlePreview
+                key={article.Id + "preview"}
+                article={article}
+            />)
+            )
+        );
+        console.log("if this repeats, means that useState setter loop happen");
+    }
 }
 
 export default ArticlesList;
