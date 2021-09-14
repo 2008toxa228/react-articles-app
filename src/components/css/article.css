@@ -11,3 +11,8 @@ article>*{
 article h1 {
     color: #4ac6b0;
 }
+
+article textarea {
+    width: 100%;
+    resize: none;
+}

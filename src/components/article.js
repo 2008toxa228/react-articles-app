@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/article.css";
 import {} from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as ApiProvider from "../ApiProvider";
 
 function Article (props) {
@@ -16,7 +16,7 @@ function Article (props) {
     }
 
     const editButton = (
-        <button onClick={changeIsEditing}>
+        <button onClick={() => setIsEditing(!isEditing)}>
             edit article
         </button>
     );
@@ -26,7 +26,7 @@ function Article (props) {
             <button onClick={() => (ApiProvider.UpdateArticleById(article.Id, JSON.stringify(article), saveButtonCallback))}>
                 save
             </button>
-            <button onClick={() => (ApiProvider.GetArticleById(articleId, setArticle), changeIsEditing())}>
+            <button onClick={() => (ApiProvider.GetArticleById(articleId, setArticle), setIsEditing(!isEditing))}>
                 discard
             </button>
         </React.Fragment>
@@ -48,24 +48,25 @@ function Article (props) {
                 <div>category: {"soon"}</div>
             </div>            
             <div>
-                preview:                 
-                <input type="text"
-                    value={article?.Preview} 
-                    onChange={e => changeArticlePreview(e.target.value)}
-                />
+                preview:
+                <div>
+                    <textarea type="text" onChange={e => changeArticlePreview(e.target.value)}>
+                        {article?.Preview} 
+                    </textarea>
+                </div>
             </div>
             <div>
                 description:
-                <input type="text"
-                    value={article?.Description} 
-                    onChange={e => changeArticleDescription(e.target.value)}
-                />
+                <div>
+                    <textarea type="text" onChange={e => changeArticleDescription(e.target.value)}>
+                        {article?.Description} 
+                    </textarea>
+                </div>
             </div>
             <div>
-                <input type="text" 
-                    value={article?.Content} 
-                    onChange={e => changeArticleContent(e.target.value)}
-                />
+                <textarea type="text" onChange={e => changeArticleContent(e.target.value)}>
+                    {article?.Content} 
+                </textarea>
             </div>
         </article>
     );
@@ -85,9 +86,13 @@ function Article (props) {
         </article>  
     );
 
+    useEffect(() => {
+        document.querySelectorAll("textarea").forEach((element) => auto_grow(element))
+    });
+
     return (
         <React.Fragment>
-            <button onClick={changeIsOwner}>
+            <button onClick={() => (ApiProvider.GetArticleById(articleId, setArticle), setIsOwner(!isOwner), setIsEditing(false))}>
                 isOwner: {isOwner ? "true" : "false"}
                 <input id={"isOwner" + articleId} 
                     type="checkbox" 
@@ -98,28 +103,9 @@ function Article (props) {
                 type="checkbox" 
                 style={{display: "none"}} 
             />
-            
-            { isEditing ? editingArticle : commonArticle }          
+            { isEditing ? editingArticle : commonArticle }
         </React.Fragment>
-    ); 
-
-    function changeIsEditing() {
-        // Хук не работал через setIsEditing(!isEditing), поэтому был установлен костылб в виде невидимого чекбокса, через состояние которого меняется isEditing.
-        document.getElementById("isEditing" + articleId).checked = !document.getElementById("isEditing" + articleId).checked;
-        setIsEditing(document.getElementById("isEditing" + articleId).checked);
-    };
-    
-    function changeIsOwner() {
-        // Сделано через костыль аналогичным образом.
-        document.getElementById("isOwner" + articleId).checked = !document.getElementById("isOwner" + articleId).checked;
-        setIsOwner(document.getElementById("isOwner" + articleId).checked);
-        
-        if (isEditing)
-        {
-            changeIsEditing();
-            ApiProvider.GetArticleById(articleId, setArticle);
-        }
-    };    
+    );  
     
     function changeArticleDescription (value) {
         article.Description = value;
@@ -153,3 +139,8 @@ function Article (props) {
 };
 
 export default Article;
+
+function auto_grow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+  }
