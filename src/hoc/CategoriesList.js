@@ -10,6 +10,7 @@ function CategoryList (props) {
         ApiProvider.GetCategoriesByPage(props.match.params.pageNumber ?? 0, mapCategories);
     }
 
+    // ToDO refactor return part.
     return (
         <React.Fragment>
             { categories 
@@ -22,15 +23,13 @@ function CategoryList (props) {
     );
     
     function mapCategories(data) {
-        console.log(data);
         setCategories(data.map((category) => (
             <Category
-                key={category.Id}
-                category={category}
+                key={ category.Id }
+                category={ category }
             />)
             )
         );
-        console.log("if this repeats, means that useState setter loop happen");
     }
 };
 

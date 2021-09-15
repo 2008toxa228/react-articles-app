@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 
 var domain = "https://localhost:44319/";
 var apiRoute = "api/articles/";
@@ -30,7 +29,6 @@ export function GetArticlesByCategoryId(id, page, callback)
     axios.get(requestUrl)
     .then(function (response) {
         callback(response.data);
-        console.log(response);
     })
     .catch((error) => console.warn(error));
     console.log("request sent");
@@ -46,10 +44,9 @@ export function GetArticlesByUserId(id, page, callback)
     .catch((error) => console.warn(error));
 }
 
-export function UpdateArticleById(id, articleJson, callback) {
-    console.log(articleJson);
-    let requestUrl = domain + apiRoute + `UpdateArticleById?id=${id}&articleJson=${articleJson}`;
-    axios.post(requestUrl)
+export function UpdateArticleById(articleJson, callback) {
+    let requestUrl = domain + apiRoute + `UpdateArticleById`;
+    axios.post(requestUrl, articleJson)
     .then(function (response) {
         callback(response.data);
     })

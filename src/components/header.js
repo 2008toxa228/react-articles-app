@@ -6,7 +6,7 @@ function Header (props) {
         <header>
             <div className="wrapper">
                 <div className="headerTitle">
-                    {props.headerTitle}
+                    { props.headerTitle }
                 </div>
                 <div className="headerLogin">
                     login?

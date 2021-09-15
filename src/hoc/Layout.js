@@ -10,7 +10,7 @@ function Layout (props) {
             <Header headerTitle="//sitename"/>
             <Nav />
             <Main>
-                {props.children}
+                { props.children }
             </Main>
             <Footer />
         </React.Fragment>

@@ -9,7 +9,11 @@ article>*{
 }
 
 article h1 {
+    width: 100%;
     color: #4ac6b0;
+    display: flex;
+    flex-direction: row;
+
 }
 
 article textarea {

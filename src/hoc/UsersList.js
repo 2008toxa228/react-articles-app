@@ -10,6 +10,7 @@ function UsersList (props) {
         ApiProvider.GetUsersByPage(props.match.params.pageNumber ?? 0, mapUsers);
     }
     
+    // ToDO refactor return part.
     return (
         <React.Fragment>
             { users 
@@ -22,14 +23,12 @@ function UsersList (props) {
     );
     
     function mapUsers(data) {
-        console.log(data);
         setUsers(data.map(user => 
             <UserPreview 
-                key={user.Id} 
-                user={user} 
+                key={ user.Id } 
+                user={ user } 
             />)
         );
-        console.log("if this repeats, means that useState setter loop happen");
     }
 }
 

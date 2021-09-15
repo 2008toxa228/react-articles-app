@@ -7,8 +7,10 @@ function User (props) {
     let user = React.useState.users.find((user) => {return user.id == props.match.params.userId});
     return (
         <div className="user">
-            <h1 className="userName">{user.name}</h1>
-            <NavLink to={"/articles/user/" + user.id}>view articles...</NavLink>
+            <h1 className="userName">{ user.name }</h1>
+            <NavLink to={ "/articles/user/" + user.id }>
+                view articles...
+            </NavLink>
         </div>
     );
 }
