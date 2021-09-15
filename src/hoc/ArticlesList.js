@@ -6,7 +6,7 @@ function ArticlesList(props) {
     const [articles, setArticles] = useState();
 
     if (!articles) {
-        console.log(props);
+        // console.log(props);
         if (props.match.params.categoryId) {
             ApiProvider.GetArticlesByCategoryId(props.match.params.categoryId, props.match.params.pageNumber ?? 0, mapArticles);
         }
@@ -30,7 +30,6 @@ function ArticlesList(props) {
     );
     
     function mapArticles(data) {
-        console.log("articles data",data);
         setArticles(data.map(article => (
             <ArticlePreview
                 key={article.Id + "preview"}
@@ -38,7 +37,7 @@ function ArticlesList(props) {
             />)
             )
         );
-        console.log("if this repeats, means that useState setter loop happen");
+        // console.log("if this repeats, means that useState setter loop happen");
     }
 }
 

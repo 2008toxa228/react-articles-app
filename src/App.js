@@ -8,7 +8,6 @@ import ArticlesList from './hoc/ArticlesList';
 import CategoryList from './hoc/CategoriesList';
 import UsersList from './hoc/UsersList';
 import User from './components/user';
-import { useState } from 'react';
 
 function App() {
   return (
